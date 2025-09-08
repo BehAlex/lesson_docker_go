@@ -1,4 +1,4 @@
-FROM golang:1.24-alpine AS builder
+FROM golang:1.22
 
 WORKDIR /app
 
@@ -7,15 +7,12 @@ RUN go mod download
 
 COPY *.go ./
 
-RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main .
+RUN CGO_ENABLED=0 GOOS=linux go build -o main .
 
 FROM alpine:latest
-WORKDIR /root/
 
 COPY --from=builder /app/main .
 
 COPY tracker.db .
-
-EXPOSE 8080
 
 CMD ["./main"]
