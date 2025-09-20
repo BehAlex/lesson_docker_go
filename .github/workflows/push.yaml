@@ -6,7 +6,7 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    container: golang:1.23
+    container: golang:1.22
     steps:
       - uses: actions/checkout@v4
       - name: Run Unit Tests
@@ -38,4 +38,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: your-docker-id/parcel-tracker:latest
+          tags: ${{ secrets.DOCKER_USERNAME }}/parcel-tracker:latest
