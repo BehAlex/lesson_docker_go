@@ -1,7 +1,7 @@
 name: golang-pipeline
 on:
   push:
-    tags: ["v*"]  # запускать deploy только при тегах вида v1.0.0
+    tags: ["v*"]  
 
 jobs:
   test:
